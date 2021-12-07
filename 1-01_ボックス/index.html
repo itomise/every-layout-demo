@@ -5,11 +5,154 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>1-01 ボックス</title>
+    <style>
+        p {
+            background-color: green;
+        }
+
+        .display-block {
+            height: 100px;
+            writing-mode: vertical-lr;
+            background-color: red;
+        }
+
+        .block {
+            background-color: aqua;
+            width: 300px;
+            margin: 10px 0;
+        }
+
+        .block>span {
+            background-color: antiquewhite;
+            height: 300px;
+            /* !!インライン要素なので、効かない */
+            width: 300px;
+            /* !!インライン要素なので、効かない */
+            margin-top: 10px;
+            /* !!インライン要素なので、効かない */
+            margin-bottom: 10px;
+            /* !!インライン要素なので、効かない */
+            margin-left: 10px;
+            /* 水平方向のスタイルなので、効く */
+            margin-right: 10px;
+            /* 水平方向のスタイルなので、効く */
+        }
+
+        .block>.inline-block {
+            display: inline-block;
+            /* noneにすると、視覚的にはHTMLから要素がなくなったように消える。スクリーンリーダーにも伝達しない */
+            background-color: aquamarine;
+            height: 50px;
+            width: 100px;
+        }
+
+        .display-flex {
+            display: flex;
+            /* フロー要素が垂直から水平に変わる */
+        }
+
+        .display-flex>div {
+            background-color: burlywood;
+            margin: 5px;
+        }
+
+        .contents {
+            width: 400px;
+            /* 半分にすると、2倍の高さが必要 */
+        }
+
+        .box-sizing {
+            background-color: chartreuse;
+            width: 100px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            /* ボックスのサイズが計算しやすい */
+        }
+
+        /* * {
+            box-sizing: border-box;
+        } */
+
+        .parent {
+            border: 1px chocolate solid;
+            width: 300px;
+            height: 100px;
+        }
+
+        .child {
+            text-align: center;
+            background-color: coral;
+            width: 100%;
+            /* コンテンツ幅を親に合わせる */
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>ボックスモデル</h1>
+    <div>
+        <h2>デフォルトのユーザーエンジェントスタイル</h2>
+        <p>p要素</p>
+        <ul>
+            <li>li</li>
+            <li>li</li>
+            <li>li</li>
+        </ul>
+    </div>
+    <div>
+        <h2>displayプロパティ</h2>
+        <p>p要素はデフォルトがブロック要素なので、利用可能なスペースを全て占有する</p>
+        <div class="display-block">
+            <p>p要素はデフォルトがブロック要素なので、利用可能なスペースを全て占有する</p>
+            <p>p要素はデフォルトがブロック要素なので、利用可能なスペースを全て占有する</p>
+            <p>p要素はデフォルトがブロック要素なので、利用可能なスペースを全て占有する</p>
+        </div>
+    </div>
+    <div>
+        <h2>インライン要素</h2>
+        <div class="block">上段のブロック</div>
+        <div class="block">
+            <span>inline要素</span>
+            <span>inline要素</span>
+            <span>inline要素</span>
+            <span>inline要素</span>
+        </div>
+        <div class="block">下段のブロック</div>
 
+        <div class="block">
+            <span class="inline-block">inline-block要素</span>
+            <span class="inline-block">inline-block要素</span>
+            <span class="inline-block">inline-block要素</span>
+            <span class="inline-block">inline-block要素</span>
+        </div>
+    </div>
+    <div>
+        <h2>整形コンテキスト</h2>
+        <div class="display-flex">
+            <div>ブロック1</div>
+            <div>ブロック2</div>
+            <div>ブロック3</div>
+        </div>
+    </div>
+
+    <h1>ボックスモデルにおけるコンテンツ</h1>
+    <div>
+        <h2>コンテンツの高さと幅</h2>
+        <div class="contents">
+            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        </div>
+    </div>
+    <div>
+        <h2>box-sizingプロパティ</h2>
+        <div class="box-sizing">　</div>
+        <div class="parent">
+            <div class="child">
+                width: 100%
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
