@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-02 コンポジション</title>
+    <style>
+        /* オブジェクト的パターン */
+        .dialog {
+            border-color: grey;
+            padding: 30px;
+        }
+        .dialog__header {
+            text-align: end;
+        }
+        .dialog__body {
+            text-align: center;
+        }
+        .dialog__footer {
+            text-align: end;
+        }
+
+        /* プリミティブ的パターン */
+        /* .box{
+            border-color: grey;
+            padding: 30px;
+        }
+        .stack {}
+        .cluster {
+            text-align: end;
+        }
+        .center {
+            text-align: center;
+        } */
+    </style>
+</head>
+<body>
+    <dialog class="dialog" open>
+        <div class="dialog__header">
+            <button value="cancel">×</button>
+        </div>
+        <p class="dialog__body">1-02 コンポジション</p>
+        <menu class="dialog__footer">
+            <button value="cancel">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+        </menu>
+    </dialog>
+
+    <!-- <dialog class="box" open>
+        <div class="stack">
+            <button class="cluster" value="cancel">×</button>
+            <p class="center">1-02 コンポジション</p>
+            <menu class="cluster">
+                <button value="cancel">Cancel</button>
+                <button id="confirmBtn" value="default">Confirm</button>
+            </menu>
+        </div>
+    </dialog> -->
+</body>
+
+</html>
