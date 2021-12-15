@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-02 コンポジション</title>
+    <style>
+        :root {
+            font-family: sans-serif;
+        }
+        * {
+            font-family: sans-serif;
+        }
+        p {
+            font-family: sans-serif;
+        }
+        details {
+            margin-top: 20px;
+        }
+        
+        ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        li {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+        }
+        .class-base-item {
+            border: 1px solid gray;
+        }
+        .utility-red {
+            color: red;
+        }
+        :root {
+            --font-size-base: 1rem;
+            --font-size-biggish: 1.75rem;
+            --font-size-big: 2.25rem;
+        }
+        h2 {
+            font-size: var(--font-size-biggish);
+        }
+    </style>
+</head>
+<body>
+    <h1>グローバルスタイルとローカルスタイル</h1>
+    
+    <section>
+        <h2>グローバルスタイルとは？</h2>
+        <ul>
+            <li class="class-base-item">
+                <p>要素 または レイアウト</p>
+            </li>
+            <li class="class-base-item">
+                <p>要素 または レイアウト</p>
+            </li>
+            <li  class="class-base-item utility-red">
+                <p>要素 または レイアウト</p>
+            </li>
+        </ul>
+        <details>
+            <summary>メモ</summary>
+            <p>
+                :root から「継承」される値や、<br />
+                * セレクタを使って、全ての要素に「直接」スタイルを設定することを意味することが多いが、<br />
+                p などの要素型セレクタを使って限定的に指定しても、伝搬するという意味でグローバルなスタイルと言える。<br />
+            </p>
+            <p>
+                HTMLのスタイル設定をグローバルに、かつカテゴリごとに行えることがcssの存在意義になる。<br />
+                要素を一つ一つ別々に扱うには向いてない。<br />
+                その性質通りに扱えば、効率的に、あらゆる種類のレイアウトや美観をWebで形成できる。<br />
+                ブランディング的な文脈のスタイルはグローバルスタイルで扱い、要素一つ一つではブランディングのことは意識しなくても良くなる、と言ったような「関心の分離」が簡単に実現できる。
+            </p>
+        </details>
+        <hr />
+    </section>
+
+    <section>
+        <h2>ユーティリティクラス</h2>
+        <div class="rounted-lg px-4 md:px-5 xl:px-4 py-3 md-py-4 xl:py-3 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md">ユーティリティファーストな Tailwind の例</div>
+        <details>
+            <summary>メモ</summary>
+            <p>
+                グローバルなスタイルとは「可搬性」という意味で異なってくる。<br />
+                要素型のスタイルからの「分岐」をCSSのグローバルなスコープにおいて行うことができる。
+            </p>
+            <p>
+                過度なユーティリティクラスは良くない。<br />
+                Every Layoutのアプローチの前提としているものは「堅牢性と一貫性の実現を、手動での介入を最小限に抑えることによって行うこと」。
+            </p>
+        </details>
+        <hr />
+    </section>
+
+    <section>
+        <h2>ローカルスタイルと「スコープ化された」スタイル</h2>
+        <div id="shadowRoot">
+
+        </div>
+        <hr />
+    </section>
+
+    <script>
+        const elem = document.getElementById('shadowRoot')
+        const shadowRoot = elem.attachShadow({ mode: 'open' })
+        shadowRoot.innerHTML = `
+            <style>
+                font-size: 10px;
+            </style>
+            <p class="class-base-item utility-red">さんセリフの段落</p>
+        `
+    </script>
+</body>
+
+</html>
