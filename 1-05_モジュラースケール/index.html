@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-05 モジュラースケール</title>
+    <style>
+        :root {
+            margin: 8px;
+            --ratio: 1.5;
+            --s0: 1rem;
+            --s1: calc(var(--s0) * var(--ratio));
+            --s2: calc(var(--s1) * var(--ratio));
+            --s3: calc(var(--s2) * var(--ratio));
+        }
+        .my-element-00 {
+            font-size: var(--s0);
+        }
+        .my-element-01 {
+            font-size: var(--s1);
+        }
+        .my-element-02 {
+            font-size: var(--s2);
+        }
+        .my-element-03 {
+            font-size: var(--s3);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>ratioごとにfont-sizeを拡大していく</h2>
+    <section>
+        <div class='my-element-00'>
+            ハロー・ワールド
+        </div>
+        <div class='my-element-01'>
+            ハロー・ワールド
+        </div>
+        <div class='my-element-02'>
+            ハロー・ワールド
+        </div>
+        <div class='my-element-03'>
+            ハロー・ワールド
+        </div>
+    </section>
+    <h2>JavaScriptから利用</h2>
+    <section>
+        <div id='from-javascript'></div>
+        <script>
+            window.addEventListener('load', () => {
+                const rootStyles = getComputedStyle(document.documentElement);
+                const scale3 = rootStyles.getPropertyValue('--s3');
+                document.querySelector('#from-javascript').innerHTML = `取得したscaleは${scale3}です`;
+            });
+        </script>
+    </section>
+    <h2>Shadow DOM</h2>
+    Shadow DOM内にもプロパティは影響する
+    <section>
+        <template id="my-custom-element">
+            <style>
+                *, ::before, ::after {
+                    box-sizing: border-box;
+                }
+                :host {
+                    padding: var(--s1);
+                    /* padding: var(--s2); */
+                    display: block;
+                    border: solid 1px;
+                }
+            </style>
+            <slot></slot>
+        </template>
+        <my-custom-element>
+            カスタムコンポーネント
+        </my-custom-element>
+        <script>
+            window.addEventListener('load', () => {
+                const template = document.querySelector('#my-custom-element');
+
+                globalThis.customElements.define(template.id, class extends HTMLElement {
+                    constructor() {
+                        super();
+                        this.attachShadow({ mode: "open" });
+                        this.shadowRoot.appendChild(template.content);
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <section>
+        <from-props padding='var(--s3)'>外部から渡すパターン</from-props>
+        <from-props>フォールバック</from-props>
+        <from-props padding='4px'>モジュラースケールではないパターン</from-props>
+        <script>
+            window.addEventListener('load', () => {
+                globalThis.customElements.define('from-props', class extends HTMLElement {
+                    constructor() {
+                        super();
+                        this.attachShadow({ mode: "open" });
+                        if (!/var\(--s\d+\)/.test(this.padding)) {
+                            console.error('paddingの値はモジュラースケールで');
+                            return;
+                        }
+                        this.shadowRoot.innerHTML = `
+                            <style>
+                                :host {
+                                    display: block;
+                                    border: solid 1px;
+                                    padding: ${this.padding};
+                                }
+                            </style>
+                            <slot></slot>
+                            <span>paddingは ${this.padding}</span>
+                        `;
+                    }
+                    get padding() {
+                        return this.getAttribute('padding') || 'var(--s1)';
+                    }
+                    set padding(val) {
+                        return this.setAttribute('padding', val);
+                    }
+                });
+            });
+        </script>
+    </section>
+
+</body>
+
+</html>
