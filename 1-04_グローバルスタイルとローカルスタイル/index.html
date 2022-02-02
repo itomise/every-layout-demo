@@ -40,9 +40,17 @@
             --font-size-base: 1rem;
             --font-size-biggish: 1.75rem;
             --font-size-big: 2.25rem;
+            --s1: 1rem;
         }
         h2 {
             font-size: var(--font-size-biggish);
+        }
+
+        stack-l {
+            display: block;
+        }
+        stack-l > * + * {
+            margin-top: var(--s1);
         }
     </style>
 </head>
@@ -114,6 +122,16 @@
             <p class="class-base-item utility-red">さんセリフの段落</p>
         `
     </script>
+
+    <section>
+        <h2>プリミティブとprops</h2>
+
+        <stack-l space="var(--s3)">
+            <div>aa</div>
+            <div>bb</div>
+            <div>cc</div>
+        </stack-l>
+    </section>
 </body>
 
 </html>
