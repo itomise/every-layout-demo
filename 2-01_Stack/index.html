@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bad {
+            border: 1px solid;
+            padding: 5px;
+            margin-bottom: 1.5rem;
+        }
+        .bad > p {
+            margin-bottom: 1.5rem;
+        }
+
+        .good {
+            border: 1px solid;
+            padding: 5px;
+            margin-bottom: 1.5rem;
+        }
+        .good > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .stack-nest {
+            border: 1px solid;
+            padding: 5px;
+            margin-bottom: 1.5rem;
+        }
+        .stack-nest * {
+            border: 1px solid;
+            padding: 5px;
+        }
+        .stack-nest * + * {
+            margin-top: 1.5rem;
+        }
+
+        .stack-variation {
+            margin-bottom: 1.5rem;
+        }
+        .stack-variation * {
+            border: 1px solid;
+            padding: 5px;
+        }
+        [class^='stack-variation'] > * {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .stack-variation-large > * + * {
+            margin-top: 1.5rem;
+        }
+        .stack-variation-small > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .stack {
+            border: 1px solid;
+            padding: 5px;
+            margin-bottom: 1.5rem;
+        }
+        .stack * {
+            border: 1px solid;
+            padding: 5px;
+        }
+        .stack > * + * {
+            margin-top: var(--space, 1.5rem);
+        }
+        .stack-exception,
+        .stack-exception + * {
+            --space: 3rem;
+        }
+
+        .stack-flex {
+            height: 500px;
+            padding: 5px;
+            border: 1px solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .stack-flex * {
+            border: 1px solid;
+            padding: 5px;
+        }
+        .stack-flex > * + * {
+            margin-top: var(--space, 1.5rem);
+        }
+        .stack-flex > :nth-child(2) {
+            margin-bottom: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="bad">
+        <p>Bad1</p>
+        <p>Bad2</p>
+        <p>Bad3</p>
+    </div>
+
+    <div class="good">
+        <p>Good1</p>
+        <p>Good2</p>
+        <p>Good3</p>
+    </div>
+
+    <div class="stack-nest">
+        <p>Stack</p>
+        <p>Stack</p>
+        <div>
+            <p>Stack</p>
+            <p>Stack</p>
+        </div>
+        <p>Stack</p>
+    </div>
+
+    <div class="stack-variation">
+        <div class="stack-variation-large">
+            <p>Stack</p>
+            <p>Stack</p>
+            <div class="stack-variation-small">
+                <p>Stack</p>
+                <p>Stack</p>
+                <p>Stack</p>
+                <p>Stack</p>
+            </div>
+            <p>Stack</p>
+        </div>
+    </div>
+
+    <div class="stack">
+        <p>Stack1</p>
+        <p class="stack-exception">Exception</p>
+        <p>Stack3</p>
+    </div>
+
+    <div class="stack-flex">
+        <p>Stack-flex1</p>
+        <p>Stack-flex2</p>
+        <p>Stack-flex3</p>
+        <p>Stack-flex4</p>
+        <p>Stack-flex5</p>
+    </div>
+</body>
+</html>
