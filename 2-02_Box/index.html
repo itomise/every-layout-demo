@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="Box.js"></script>
+    <title>Document</title>
+    <style>
+        :root {
+            font-family: sans-serif;
+            line-height: 2rem;
+            --ratio: 1.5;
+            --s0: 1rem;
+            --s1: calc(var(--s0) * var(--ratio));
+            --color-light: #eee;
+            --color-dark: #111;
+            --color-emphasis: red;
+            --border-thin: 1rem:
+        }
+        .h1 {
+            line-height: 3rem;
+            font-weight: 700;
+        }
+        .emphasis {
+            font-family: Impact;
+            line-height: 5rem;
+            font-weight: 700;
+            color: var(--color-emphasis);
+        }
+        .box {
+            color: var(--color-dark);
+            background-color: var(--color-light);
+            padding: var(--s1);
+            border: var(--border-thin) solid;
+            outline: var(--border-thin) transparent;
+            outline-offset: calc(var(--border-thin) * -1);
+        }        
+        .box * {
+            color: inherit;
+        }
+        .box .invert {
+            color: var(--color-light);
+            background-color: var(--color-dark);
+        }
+        .stack > * + * {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="h1">関心の分離</div>
+    各要素固有のスタイルを管理しましょう。自分の関心ごと以外は知らないようにして、周りからスタイルを指示しないようにする。</br>
+    font-familyやline-heightはグローバルで適用して、
+    <div class="emphasis">ここだけ違うのにしたい！ってのは「例外」として扱うのがベターです。</div>
+    フォントのようなグローバルスタイルはブランディング等、「美観」に関わるものがほとんどで、「構造」には影響しません。</br>
+    では「構造」において、Boxの親や祖先要素で扱うべきプロパティは一体なんなんでしょう。
+    <div class="emphasis">答え: マージン。</div>
+    マージンを外から決めることによって、Boxには、過不足ないピッタリした適切なスペースを持たせましょう。</br>
+    でも。パディングは要素の内側に作用するものなので、Box自身がプロパティとして扱うようにしましょう。</br>
+    パディングと、マージンはどう適用すべきなのか？正解はこちら↓</br>
+    <img src="IMG_1173.jpg" width="384" height="300" />
+
+    <div class="h1">目に見えるBOX</div>
+    <div class="box">そもそもBoxはボックスの形をしていて、はじめてBoxとよびます</div>
+
+    <div class="h1">使い方：コンテンツのグループ化</div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</br>
+    <div class="box">ここに注目文章があるよ</div>
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+    <hr />
+    <div class="stack">
+        <div class="box">Box</div>
+        <div class="box">Box</div>
+        <div class="box">Box</div>
+    </div>
+    <hr />
+    <div class="box" style="padding: 0;">
+        <div class="invert">ヘッダー</div>
+        <div class="box">本文</div>
+    </div>
+</body>
+</html>
