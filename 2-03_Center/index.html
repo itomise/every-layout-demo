@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center</title>
+    <!-- <link href="Center.css" type="" /> -->
+    
+    <style>
+        :root {
+            font-family: sans-serif;
+            line-height: 2rem;
+            --ratio: 1.5;
+            --s0: 1rem;
+            --s1: calc(var(--s0) * var(--ratio));
+            --color-light: #eee;
+            --color-dark: #111;
+            --color-emphasis: red;
+            --border-thin: 1rem;
+            --space: 1rem;
+        }
+        .stack > * + * {
+            margin-top: 1.5rem;
+        }
+        .center {
+            max-width: 60ch;
+            margin: 0 auto;
+            border: 1px solid grey;
+        }
+        .border {
+            border: 1px solid grey;
+        }
+        .divider {
+            margin: 40px 0;
+        }
+        .center-2 {
+            max-width: 60ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .min-margin {
+            display: flex;
+            justify-content: center;
+        }
+        .min-margin-inner {
+            padding: 40px 0;
+            width: 50ch;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .min-margin-center {
+            /* box-sizing: border-box; */
+            box-sizing: content-box;
+            max-width: 60ch;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 1px solid grey;
+        }
+
+        .immanent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Center</h1>
+        <div class="center">
+            中央揃えしたいエリア
+        </div>
+        
+        <hr class="divider" />
+        
+        <div class="stack">
+            <div class="border">Stack Item</div>
+            <div class="border">Stack Item</div>
+            <div class="border center">Stack Item</div>
+            <div class="border">Stack Item</div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="min-margin">
+            <div class="min-margin-inner">
+                ここは40chですよ
+                <div class="min-margin-center">
+                    中央揃えしたいmax-width:60chのエリア。でも最低限のマージンは取りたい
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="immanent">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <button>押してください</button>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <hr class="divider" />
+
+        <center-l max="60ch">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+            <button>ボタン</button>
+        </center-l>
+
+        <center-l intrinsic>
+            <p>これは絶対に中央揃えになる</p>
+        </center-l>
+    </section>
+
+    <script src="Center.js" type="module"></script>
+</body>
+</html>
