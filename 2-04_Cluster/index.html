@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cluster</title>
+    
+    <style>
+        :root {
+            font-family: sans-serif;
+            line-height: 2rem;
+            --ratio: 1.5;
+            --s0: 1rem;
+            --s1: calc(var(--s0) * var(--ratio));
+            --color-light: #eee;
+            --color-dark: #111;
+            --color-emphasis: red;
+            --border-thin: 1rem;
+        }
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .divider {
+            margin: 40px 0;
+        }
+        
+        .parent {
+            font-size: 0;
+        }
+        .parent > * {
+            font-size: 1rem;
+        }
+
+        .gap-margin-space > li {
+            margin: 0 40px 40px 0;
+            border: 1px solid black;
+        }
+
+        .cluster-ngt {
+            --space: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            margin: calc(var(--space) / 2 * -1);
+        }
+        .cluster-ngt > * {
+            margin: calc(var(--space) / 2);
+            display: inline-block;
+            border: 1px solid black;
+        }
+        .cluster-ngt > * > * {
+            margin: calc(var(--space) / 2);
+        }
+
+        @supports (gap: 1rem) {
+            .cluster-gap {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+            .cluster-gap > * {
+                display: inline-block;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="Cluster.css">
+    <script src="Cluster.js" type="module"></script>
+    
+    
+</head>
+<body>
+    <section>
+        <h1>Cluster</h1>
+        
+        <hr class="divider" />
+
+        <h3>だめなパターン</h3>
+        <ul>
+            <li style="display: inline-block;">ソース内で改行してるので</li>
+            <li style="display: inline-block;">間に空白スペースが</li>
+            <li style="display: inline-block;">入る</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h3>フォントサイズを0にしてスペースをなくしてみる</h3>
+
+        <ul class="parent">
+            <li style="display: inline-block;">中身以外は</li>
+            <li style="display: inline-block;">フォントサイズ0なので</li>
+            <li style="display: inline-block;">間隔はあかない</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h3>でも折り返しに関するマージンの問題が残るので、マージンでやってみる</h3>
+        <span>だが、右端に必ずマージン分のスペースが空いてしまう</span>
+
+        <ul class="parent gap-margin-space">
+            <li style="display: inline-block;">あいうえおあいうえお</li>
+            <li style="display: inline-block;">あいうえおあいうえお</li>
+            <li style="display: inline-block;">あいうえおあいうえお</li>
+            <li style="display: inline-block;">あいうえおあいうえお</li>
+            <li style="display: inline-block;">あいうえおあいうえお</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h3>ネガティブマージンを使っていい感じにする</h3>
+
+        <ul class="cluster-ngt">
+            <li>あいうえおあいうえお</li>
+            <li>かきくけこかきくけこ</li>
+            <li>さしすせそさしすせそ</li>
+            <li>たちつてとたちつてと</li>
+            <li>なにぬねのなにぬねの</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h3>flex を使う</h3>
+
+        <ul class="cluster-gap">
+            <li>あいうえおあいうえお</li>
+            <li>かきくけこかきくけこ</li>
+            <li>さしすせそさしすせそ</li>
+            <li>たちつてとたちつてと</li>
+            <li>なにぬねのなにぬねの</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h3>位置揃え</h3>
+
+        <a href="https://every-layout.dev/demos/cluster-ctas/" target="_blank" rel="noopener noreferrer">https://every-layout.dev/demos/cluster-ctas/</a>
+
+        <hr class="divider" />
+
+        <h3>ヘッダーの例</h3>
+
+        <a href="https://every-layout.dev/demos/cluster-header/" target="_blank" rel="noopener noreferrer">https://every-layout.dev/demos/cluster-header/</a>
+
+        <hr class="divider" />
+        
+        <h3>カスタムコンポーネント</h3>
+
+        <cluster-l role="list">
+            <div role="listitem">1コ目</div>
+            <div role="listitem">2コ目</div>
+            <div role="listitem">3コ目</div>
+            <div role="listitem">4コ目</div>
+            <div role="listitem">5コ目</div>
+        </cluster-l>
+    </section>
+</body>
+</html>
