@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    
+    <style>
+        :root {
+            font-family: sans-serif;
+            line-height: 2rem;
+            --ratio: 1.5;
+            --s0: 1rem;
+            --s1: calc(var(--s0) * var(--ratio));
+            --color-light: #eee;
+            --color-dark: #111;
+            --color-emphasis: red;
+            --border-thin: 1rem;
+        }
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .divider {
+            margin: 40px 0;
+        }
+
+        .with-sidebar {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            background-color: darkseagreen;
+            /* サイドバーの幅 (指定しない場合は内部コンテンツの幅) */
+            flex-basis: 20rem;
+            flex-grow: 1;
+        }
+
+        .not-sidebar {
+            background-color: lightsalmon;
+            flex-basis: 0;
+            flex-grow: 999;
+            min-width: 50%;
+        }
+
+        .with-gutter {
+            gap: 1rem;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./Sidebar.css">
+    <script src="./Sidebar.js" type="module"></script>
+    
+    
+</head>
+<body>
+    <section>
+        <h1>Sidebar</h1>
+        
+        <hr class="divider" />
+
+        <h3>flexboxでの実装</h3>
+
+        <div class="with-sidebar">
+            <div class="sidebar">サイドバー</div>
+            <div class="not-sidebar">コンテンツ</div>
+        </div>
+
+        <h3>ガター付き</h3>
+
+        <div class="with-sidebar with-gutter">
+            <div class="sidebar">サイドバー</div>
+            <div class="not-sidebar">コンテンツ</div>
+        </div>
+        
+        <h3>カスタムコンポーネント</h3>
+
+        <h4>左がサイドバー</h4>
+        <sidebar-l space="12px" sideWidth="15rem" noStretch>
+            <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="alt text"/>
+            <p>サンプル画像です</p>
+        </sidebar-l>
+        <h4>右がサイドバー</h4>
+        <sidebar-l space="12px" sideWidth="15rem" noStretch side="right">
+            <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="alt text"/>
+            <p>サンプル画像です</p>
+        </sidebar-l>
+    </section>
+</body>
+</html>
