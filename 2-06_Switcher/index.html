@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        /* .grid > * {
+            width: 33.333%;
+        }
+        @media (max-width: 60rem) {
+            .grid > * {
+                width: 50%;
+            }
+        }
+        @media (max-width: 30rem) {
+            .grid > * {
+                width: 100%;
+            }
+        } */
+        .grid > * {
+            /* 値を3つ指定: flex-grow | flex-shrink | flex-basis */
+            flex: 1 1 20rem;
+        }
+
+        .switcher > * {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .switcher > * > * {
+            flex-grow: 1;
+            flex-basis: calc((30rem - 100%) * 999);
+        }
+
+        .switcher2 {
+            display: flex;
+            flex-wrap: wrap;
+            /* デフォルト値はモジュラースケールの最初の値 */
+            gap: var(--gutter, var(--s1));
+            /* レイアウトの「分岐点」となる幅 */
+            --threshold: 30rem;
+        }
+        .switcher2 > * {
+            /* 子要素の伸長を許可 */
+            flex-grow: 1;
+            /* --thresholdでレイアウト切り替え */
+            flex-basis: calc((var(--threshold) - 100%) * 999);
+        }
+        .switcher2 > :nth-last-child(n+5),
+        .switcher2 > :nth-last-child(n+5) ~ * {
+            /* 4つ以上の子要素が存在すれば垂直方向の配置に切り替え */
+            flex-basis: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div>AAA</div>
+        <div>BBB</div>
+        <div>CCC</div>
+    </div>
+
+    <div class="switcher">
+        <div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <!-- <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div>
+            <div>AAA</div>
+            <div>BBB</div>
+            <div>CCC</div> -->
+        </div>
+    </div>
+
+    <div class="switcher2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <!-- <div>5</div> -->
+    </div>
+</body>
+</html>
