@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover</title>
+
+    <style>
+        body, h1 {
+            padding: 0;
+            margin: 0;
+        }
+        section {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1 -->
+    <!-- <style>
+        .parent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+        .parent > .child {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            height: 700px;
+            border: 3px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+    <section>
+        <h1>100vhによる微妙なやつ</h1>
+        <div class="parent">
+            <div class="child">
+                window の height が低いと上下はみ出しちゃう
+            </div>
+        </div>
+    </section> -->
+
+    <!-- 2 -->
+    <!-- <style>
+        .parent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 0;
+            box-sizing: border-box;
+        }
+        .parent > .child {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.3);
+            height: 700px;
+            border: 3px solid red;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    </style>
+    <section>
+        <h1>高さを正しく処理する</h1>
+        <div class="parent">
+            <div class="child">
+                min-height により適切な padding が取れる
+            </div>
+        </div>
+    </section> -->
+
+
+    <style>
+        .cover {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* padding: 40px 0; */
+            box-sizing: border-box;
+        }
+        .cover > header {
+            background-color: antiquewhite;
+        }
+        .cover > h1 {
+            position: relative;
+            margin-top: auto;
+            margin-bottom: auto;
+            background-color: rgba(0, 0, 0, 0.3);
+            height: 100px;
+            border: 3px solid red;
+            box-sizing: border-box;
+            width: 100%;
+        }
+    </style>
+    <section>
+        <div class="cover">
+            <header>ヘッダー</header>
+            <h1>主要素</h1>
+        </div>
+    </section>
+</body>
+</html>
