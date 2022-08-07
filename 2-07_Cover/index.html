@@ -92,12 +92,21 @@
         .cover > header {
             background-color: antiquewhite;
         }
+        .cover > * {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .cover > :first-child:not(h1) {
+            margin-top: 0;
+        }
+        .cover > :last-child:not(h1) {
+            margin-bottom: 0;
+        }
         .cover > h1 {
             position: relative;
             margin-top: auto;
             margin-bottom: auto;
             background-color: rgba(0, 0, 0, 0.3);
-            height: 100px;
             border: 3px solid red;
             box-sizing: border-box;
             width: 100%;
@@ -106,7 +115,12 @@
     <section>
         <div class="cover">
             <header>ヘッダー</header>
-            <h1>主要素</h1>
+            <h1>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</h1>
+            <footer>
+                主に「スクロールせずに見える」導入コンテンツなどに使われるレイアウト。<br />
+                <a href="https://every-layout.dev/demos/cover-html-book/" target="_blank">https://every-layout.dev/demos/cover-html-book/</a>
+                <a href="https://every-layout.dev/demos/cover-page-intro/" target="_blank">https://every-layout.dev/demos/cover-page-intro/</a>
+            </footer>
         </div>
     </section>
 </body>
